@@ -37,11 +37,17 @@ while game_is_on:
 
     if snake_game.head.distance(snake_food) < 15:
         snake_food.refresh()
+        snake_game.extend()
         score.add_score()
+
+    for snake_part in snake_game.snake_parts:
+        if snake_part == snake_game.head:
+            pass
+        elif snake_game.head.distance(snake_part) < 10:
+            game_is_on = False
 
     if snake_game.head.xcor() > 280 or snake_game.head.xcor() < -280 or snake_game.head.ycor() > 260 or snake_game.head.ycor() < -280:
         game_is_on = False
-
 
 if game_is_on == False:
     game_over = GameOver()
